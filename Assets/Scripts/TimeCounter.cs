@@ -72,6 +72,9 @@ public class TimeCounter : MonoBehaviour
     }
     void TimeShow()
     {
-        Timetext.text = hour.ToString() +" : "+ ((int)second).ToString();
+        string sc;
+        if(second < 10)sc = "0" + ((int)second).ToString();
+        else sc = ((int)second).ToString();
+        Timetext.text = hour.ToString() + " : " + sc;
     }
 }

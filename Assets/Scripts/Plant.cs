@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public enum PlantStatas
 {
     None,
@@ -33,4 +34,5 @@ public class Plant : ScriptableObject
         statas = PlantStatas.None;
         growth = 0f;
     }
+    
 }
