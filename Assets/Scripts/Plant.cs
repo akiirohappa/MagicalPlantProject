@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public enum PlantStatas
 {
     None,
@@ -9,6 +8,7 @@ public enum PlantStatas
     Growth,
     Harvest
 }
+[CreateAssetMenu(menuName = "Data/Plant", fileName = "Plant")]
 public class Plant : ScriptableObject
 {
     public string plantname;
