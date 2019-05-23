@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad30beea51a97604fb487afcdfb51695, type: 3}
+  m_Name: kab_Seed
+  m_EditorClassIdentifier: 
+  itemname: "\u30AB\u30D6\u306E\u7A2E"
+  price: 10
+  setumei: "\u30AB\u30D6\u306E\u7A2E\u3002"
+  tag: 0
+  plantData: {fileID: 11400000, guid: 1968d3ed772b6584f8bc1bfbaa4a9eff, type: 2}
+  img: {fileID: 21300000, guid: 6a822e8a73ce91549800d7d796336e99, type: 3}

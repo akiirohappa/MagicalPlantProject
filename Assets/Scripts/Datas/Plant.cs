@@ -12,7 +12,7 @@ public enum PlantStatas
 public class Plant : ScriptableObject
 {
     public string plantname;
-    public float growth;
+    public float growth = 0f;
     public float GrowthPlus;
     public GameObject plantobj;
     public PlantStatas statas;
@@ -25,7 +25,6 @@ public class Plant : ScriptableObject
     {
         plantname = name;
         plantobj = Instantiate(obj,pos.transform);
-        growth = 0f;
         GrowthPlus = plus;
         statas = PlantStatas.NotGrowth;
     }

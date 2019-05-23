@@ -6,7 +6,8 @@ public enum ItemTag
     Seed,
     Plant,
 }
-public class ItemList : MonoBehaviour
+[CreateAssetMenu (menuName ="ItemList" ,fileName ="ItemList")]
+public class ItemList : ScriptableObject
 {
     [SerializeField]List<ItemData> myItem;
     // Start is called before the first frame update
@@ -20,16 +21,12 @@ public class ItemList : MonoBehaviour
     {
         
     }
-    List<ItemData> GetItemList()
-    {
-        return myItem;
-    }
-    void SetItemList(List<ItemData> it)
+    public void SetItemList(List<ItemData> it)
     {
         myItem = it;
     }
-    void SetItemList(ItemData it)
+    public List<ItemData> GetItemList()
     {
-        myItem.Add(it);
+        return myItem;
     }
 }

@@ -51,7 +51,7 @@ public class TimeCounter : MonoBehaviour
             time = TimeMode.Noon;
         }
     }
-    IEnumerator LightChange(TimeMode t)
+    public IEnumerator LightChange(TimeMode t)
     {
         for(int i = 0;i < changetime; i++)
         {
@@ -64,7 +64,7 @@ public class TimeCounter : MonoBehaviour
             {
                 float cl = ((1f / changetime) * i);
                 DayLight.color = new Color(cl, cl, cl);
-                Debug.Log(cl);
+                //Debug.Log(cl);
             }
             //yield return new WaitForSeconds(0.5f);
             yield return null;

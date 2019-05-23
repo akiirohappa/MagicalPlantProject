@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad30beea51a97604fb487afcdfb51695, type: 3}
-  m_Name: kab
+  m_Script: {fileID: 11500000, guid: 7fcfd20a00406894185f20a2043ac9e7, type: 3}
+  m_Name: ShopItems
   m_EditorClassIdentifier: 
-  itemname: "\u30AB\u30D6"
-  price: 100
-  setumei: 
-  tag: 1
-  plantData: {fileID: 11400000, guid: 1968d3ed772b6584f8bc1bfbaa4a9eff, type: 2}
+  myItem:
+  - {fileID: 11400000, guid: f1dfbc2a204f056418499c379fdbfd00, type: 2}

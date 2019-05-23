@@ -15,17 +15,20 @@ enum MenuMode
 public class MenuManager : MonoBehaviour
 {
     public GameObject BackButton;
+    [SerializeField] Text moneyText;
+    PlayerData pl;
     [SerializeField] GameObject Shop;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        pl = GetComponent<PlayerData>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        moneyText.text = pl.money.ToString() + "円";
     }
     public void OpenShop()
     {
@@ -33,6 +36,7 @@ public class MenuManager : MonoBehaviour
         Shop.SetActive(true);
         Shop.GetComponent<Animator>().SetTrigger("Open");
         BackButton.SetActive(true);
+        Shop.GetComponent<Shop>().OpenShop();
     }
     public void CloseMenu()
     {
