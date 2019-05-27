@@ -377,4 +377,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShopFName: Shop
+  ItemFName: Item
+  im: {fileID: 0}
   it: {fileID: 0}

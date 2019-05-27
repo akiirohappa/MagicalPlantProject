@@ -56,6 +56,7 @@ public class ItemManager : MonoBehaviour
             if(id == it)
             {
                 id.value += value;
+                if(!id.IsGetItem)id.IsGetItem = true;
                 return;
             }
         }

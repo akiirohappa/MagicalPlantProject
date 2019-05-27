@@ -11,11 +11,13 @@ public enum PlantStatas
 [CreateAssetMenu(menuName = "Data/Plant", fileName = "Plant")]
 public class Plant : ScriptableObject
 {
-    public string plantname;
+    public string plantname = "空";
     public float growth = 0f;
     public float GrowthPlus;
     public GameObject plantobj;
-    public PlantStatas statas;
+    public PlantStatas statas = PlantStatas.None;
+    public ItemData harvestItem;
+    public int harvestPlValue;
     public Plant()
     {
         statas = PlantStatas.None;
@@ -28,10 +30,22 @@ public class Plant : ScriptableObject
         GrowthPlus = plus;
         statas = PlantStatas.NotGrowth;
     }
-    public void Harvest()
+    public void SetPlant(Plant pl, GameObject pos)
     {
-        statas = PlantStatas.None;
-        growth = 0f;
+        plantname = pl.plantname ;
+        plantobj = Instantiate(pl.plantobj, pos.transform);
+        GrowthPlus = pl.GrowthPlus;
+        growth = 0;
+        statas = PlantStatas.NotGrowth;
+        harvestItem = pl.harvestItem;
+        harvestPlValue = pl.harvestPlValue;
     }
-    
+    public void ResetPlant()
+    {
+        plantname = "空";
+        Destroy(plantobj);
+        GrowthPlus = 0;
+        growth = 0;
+        statas = PlantStatas.None;
+    }
 }

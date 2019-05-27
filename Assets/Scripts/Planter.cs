@@ -17,6 +17,10 @@ public class Planter : MonoBehaviour
     [SerializeField] GameObject beforobj;
     Text uiname;
     Text uiGrowth;
+    Text uiCanHv;
+    ItemManager im;
+    MenuManager Mm;
+    [SerializeField] ItemData PlantItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,16 +28,19 @@ public class Planter : MonoBehaviour
         plantData = new Plant[max];
         uiname = uiObj.transform.GetChild(0).GetComponent<Text>();
         uiGrowth = uiObj.transform.GetChild(1).GetComponent<Text>();
+        uiCanHv = uiObj.transform.GetChild(2).GetComponent<Text>();
+        im = GetComponent<ItemManager>();
+        Mm = GetComponent<MenuManager>();
         for (int i = 0;i < max; i++)
         {
             plantData[i] = ScriptableObject.CreateInstance<Plant>();
         }
-        plantData[0].SetPlant("test", testobj,plantPlane[0],10);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Mm.GetMode() != MenuMode.None) if (Mm.GetMode() != MenuMode.ItemPlant) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 20f, layerM))
@@ -45,6 +52,16 @@ public class Planter : MonoBehaviour
             uiObj.transform.position = Input.mousePosition;
             GetPlantData(beforobj);
             UIDraw();
+            if (NowPlant.statas == PlantStatas.Harvest && Input.GetMouseButtonDown(0))
+            {
+                Harvest(NowPlant);
+            }
+            if(NowPlant.statas == PlantStatas.None && Input.GetMouseButtonDown(0) && Mm.GetMode() == MenuMode.ItemPlant)
+            {
+                NowPlant.SetPlant(PlantItem.plantData, beforobj);
+                PlantItem.value--;
+                Mm.CloseMenu();
+            }
         }
         else
         {
@@ -62,10 +79,21 @@ public class Planter : MonoBehaviour
         }
         if (num > -1) NowPlant = plantData[num];
     }
+    void GetPlantPlane(GameObject plant)
+    {
+        int num = -1;
+        for (int i = 0; i < max; i++)
+        {
+            if (plant == plantPlane[i]) num = i;
+        }
+        if (num > -1) NowPlant = plantData[num];
+    }
     void UIDraw()
     {
         uiname.text = NowPlant.plantname;
         uiGrowth.text = "生育度：" + NowPlant.growth.ToString() + "%";
+        if (NowPlant.statas == PlantStatas.Harvest) uiCanHv.gameObject.SetActive(true);
+        else uiCanHv.gameObject.SetActive(false);
     }
     public void Growth()
     {
@@ -78,5 +106,14 @@ public class Planter : MonoBehaviour
             }
             if (plantData[i].growth >= 100) plantData[i].statas = PlantStatas.Harvest;
         }
+    }
+    public void Harvest(Plant pl)
+    {
+        im.ChangeItemValue(pl.harvestItem, pl.harvestPlValue);
+        pl.ResetPlant();
+    }
+    public void SetPlantItem(ItemData pl)
+    {
+        PlantItem = pl;
     }
 }

@@ -11,6 +11,7 @@ public class ItemData : ScriptableObject
     public ItemTag tag;
     public Plant plantData;
     public Sprite img;
+    public bool IsGetItem = false;
     public void DataCopy(ItemData it)
     {
         itemname = it.itemname;

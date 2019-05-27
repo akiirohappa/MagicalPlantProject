@@ -15,5 +15,8 @@ MonoBehaviour:
   plantname: "\u30AB\u30D6"
   growth: 0
   GrowthPlus: 10
-  plantobj: {fileID: 193742, guid: 9c74caa742791864f9c678287121e6c9, type: 3}
+  plantobj: {fileID: 6820888942858506195, guid: d91a0199456b1ca4aba3062d2846976c,
+    type: 3}
   statas: 0
+  harvestItem: {fileID: 11400000, guid: dafc547bb8de9c4469040a8af0097abf, type: 2}
+  harvestPlValue: 1
