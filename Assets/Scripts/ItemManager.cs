@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//アイテム管理
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,24 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartItemGet();
+    }
+    //ゲーム開始時のアイテム処理
+    void StartItemGet()
+    {
+        item.GetItemList().Clear();
+        ItemData[] ia = Resources.LoadAll<ItemData>("Seed");
+        for(int i = 0;i < ia.Length; i++)
+        {
+            ia[i].value = 0;
+            item.GetItemList().Add(ia[i]);
+        }
+        ia = Resources.LoadAll<ItemData>("Plant");
+        for (int i = 0; i < ia.Length; i++)
+        {
+            ia[i].value = 0;
+            item.GetItemList().Add(ia[i]);
+        }
     }
     //リスト取得
     public ItemList GetItemList()
@@ -31,7 +49,7 @@ public class ItemManager : MonoBehaviour
         return item.GetItemList().Count;
     }
     //アイテム追加
-    public void AddItemList(ItemData it ,int value)
+    public void ChangeItemValue(ItemData it ,int value)
     {
         foreach(ItemData id in item.GetItemList())
         {
@@ -41,9 +59,7 @@ public class ItemManager : MonoBehaviour
                 return;
             }
         }
-        //ItemData itemsa = ScriptableObject.CreateInstance<ItemData>();
-        //itemsa.DataCopy(it);
-        item.GetItemList().Add(it);
+        Debug.Log("Item Error " + it.itemname + "　のデータが見つかりませんでした。");
     }
     //アイテム除去
     public void RemoveItem(int it)

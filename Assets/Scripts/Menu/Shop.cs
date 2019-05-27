@@ -11,6 +11,7 @@ enum ShopStatas
 public class Shop : MonoBehaviour
 {
     ItemManager Im;
+    PlayerData Pd;
     [SerializeField]ShopStatas SS;
     [SerializeField] ItemList MItems;
     [SerializeField]ItemList SItems;
@@ -21,9 +22,11 @@ public class Shop : MonoBehaviour
     [SerializeField] GameObject Setumei;
     [SerializeField] GameObject TradePanel;
     int plusvalue;
+    [SerializeField] int money;
     // Start is called before the first frame update
     void Start()
     {
+        Pd = GameObject.Find("Manager").GetComponent<PlayerData>();
         Im = GameObject.Find("Manager").GetComponent<ItemManager>();
         GetShopItems();
     }
@@ -41,6 +44,7 @@ public class Shop : MonoBehaviour
     //ショップメニューを開いた処理
     public void OpenShop()
     {
+        money = Pd.money;
         SS = ShopStatas.None;
         SetSpBuy();
     }
@@ -100,15 +104,28 @@ public class Shop : MonoBehaviour
         TradePanel.transform.GetChild(0).GetComponent<Text>().text = selectItem.itemname + "　を購入しますか？";
         TradeReset();
     }
+    
     void TradeReset()
     {
         TradePanel.transform.GetChild(1).GetComponent<Text>().text = (selectItem.price * plusvalue).ToString();
-        TradePanel.transform.GetChild(2).gameObject.SetActive(false);
+        if ((selectItem.price * plusvalue) > money)
+        {
+            TradePanel.transform.GetChild(2).gameObject.SetActive(true);
+            TradePanel.transform.GetChild(4).GetComponent<Button>().enabled = false;
+        }
+        else
+        {
+            TradePanel.transform.GetChild(2).gameObject.SetActive(false);
+            TradePanel.transform.GetChild(4).GetComponent<Button>().enabled = true;
+        }
         TradePanel.transform.GetChild(5).GetComponent<Text>().text = plusvalue.ToString();
     }
     public void SubmitTrade()
     {
-        Im.AddItemList(selectItem,plusvalue);
+        if (SS == ShopStatas.Buy) money -= (selectItem.price * plusvalue);
+        else money -= (selectItem.price * plusvalue);
+        Pd.money = money;
+        Im.ChangeItemValue(selectItem, plusvalue);
         CancelTrade();
     }
     public void CancelTrade()
@@ -118,7 +135,8 @@ public class Shop : MonoBehaviour
     public void Changevalue(int num)
     {
         if (plusvalue == 1 && num < 0) return;
-        else if (plusvalue == 999 && num > 0) return;
+        else if (SS == ShopStatas.Buy && plusvalue == 999 && num > 0) return;
+        else if (SS == ShopStatas.Sell && plusvalue == MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value) return;
         plusvalue += num;
         TradeReset();
     }

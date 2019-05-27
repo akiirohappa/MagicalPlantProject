@@ -345,7 +345,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1433,7 +1433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00011615155, y: -0.000034753488}
+  m_AnchoredPosition: {x: 0.00011615155, y: -0.000007898263}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &375076047
@@ -5847,7 +5847,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 320893245}
   m_HandleRect: {fileID: 320893244}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6448,6 +6448,7 @@ MonoBehaviour:
   ListBt: {fileID: 8944212351505183887, guid: eb69ddd1e4a3a194591594fc1a5b2d53, type: 3}
   Setumei: {fileID: 1105888638}
   TradePanel: {fileID: 278904268}
+  money: 0
 --- !u!1 &2026380083
 GameObject:
   m_ObjectHideFlags: 0
