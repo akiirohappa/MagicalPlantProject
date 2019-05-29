@@ -116,4 +116,8 @@ public class Planter : MonoBehaviour
     {
         PlantItem = pl;
     }
+    public Plant[] GetPlanters()
+    {
+        return plantData;
+    }
 }

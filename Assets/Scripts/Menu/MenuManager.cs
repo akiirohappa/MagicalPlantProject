@@ -22,6 +22,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject Shop;
     [SerializeField] GameObject Item;
     [SerializeField] GameObject Library;
+    [SerializeField] GameObject Config;
     MenuMode MM;
     // Start is called before the first frame update
     void Start()
@@ -71,6 +72,17 @@ public class MenuManager : MonoBehaviour
         BackButtonTx.SetActive(true);
         Library.GetComponent<Library>().OpenMenu();
     }
+    public void OpenConfig()
+    {
+        if (MM == MenuMode.Config) return;
+        CloseMenu();
+        MM = MenuMode.Config;
+        EventSystem.current.SetSelectedGameObject(null);
+        Config.SetActive(true);
+        Config.GetComponent<Animator>().SetTrigger("Open");
+        BackButton.SetActive(true);
+        BackButtonTx.SetActive(true);
+    }
     public void CloseMenu()
     {
         switch (MM)
@@ -89,6 +101,10 @@ public class MenuManager : MonoBehaviour
             case MenuMode.Log:
                 MM = MenuMode.None;
                 Library.GetComponent<Animator>().SetTrigger("Close");
+                break;
+            case MenuMode.Config:
+                MM = MenuMode.None;
+                Config.GetComponent<Animator>().SetTrigger("Close");
                 break;
         }
         BackButton.SetActive(false);

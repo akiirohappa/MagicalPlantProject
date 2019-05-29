@@ -378,5 +378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopFName: Shop
   ItemFName: Item
+  LogFName: Library
   im: {fileID: 0}
   it: {fileID: 0}

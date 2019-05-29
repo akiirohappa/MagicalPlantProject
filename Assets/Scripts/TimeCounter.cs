@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//-----------------------------------
+//時間進行の管理
+//-----------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +14,10 @@ public class TimeCounter : MonoBehaviour
 {
     Planter Pl;
     public Light DayLight;
+    [SerializeField] int day;
     [SerializeField] int hour;
     [SerializeField] float second;
+    [SerializeField] Text DayText;
     [SerializeField] Text Timetext;
     [SerializeField] TimeMode time = TimeMode.Noon;
     public int changetime = 1;
@@ -21,6 +26,8 @@ public class TimeCounter : MonoBehaviour
     void Start()
     {
         Pl = GetComponent<Planter>();
+        day = 1;
+        DayText.text = day + "日目";
         hour = 7;
         second = 00f;
     }
@@ -49,6 +56,8 @@ public class TimeCounter : MonoBehaviour
         {
             StartCoroutine(LightChange(time));
             time = TimeMode.Noon;
+            day++;
+            DayText.text = day + "日目";
         }
     }
     public IEnumerator LightChange(TimeMode t)
@@ -76,5 +85,27 @@ public class TimeCounter : MonoBehaviour
         if(second < 10)sc = "0" + ((int)second).ToString();
         else sc = ((int)second).ToString();
         Timetext.text = hour.ToString() + " : " + sc;
+    }
+    public class TimeData
+    {
+        public int day;
+        public int hour;
+        public float second;
+        public TimeData(int d,int h,float s)
+        {
+            day = d;
+            hour = h;
+            second = s;
+        }
+    }
+    public TimeData GetTime()
+    {
+        return new TimeData(day, hour, second);
+    }
+    public void SetTime(int d, int h, float s)
+    {
+        day = d;
+        hour = h;
+        second = s;
     }
 }

@@ -6,6 +6,7 @@ public class ShopItems : MonoBehaviour
 {
     [SerializeField] string ShopFName;
     [SerializeField] string ItemFName;
+    [SerializeField] string LogFName;
     [SerializeField] MenuManager im;
     [SerializeField]public ItemData it;
     private void Awake()
@@ -14,7 +15,8 @@ public class ShopItems : MonoBehaviour
     }
     public void OnClick()
     {
-        if(im.GetMode() == MenuMode.Shop)GameObject.Find(ShopFName).GetComponent<ShopandItem>().OpenItem(it);
-        else GameObject.Find(ItemFName).GetComponent<ShopandItem>().OpenItem(it);
+        if (im.GetMode() == MenuMode.Shop) GameObject.Find(ShopFName).GetComponent<ShopandItem>().OpenItem(it);
+        else if (im.GetMode() == MenuMode.Item) GameObject.Find(ItemFName).GetComponent<ShopandItem>().OpenItem(it);
+        else GameObject.Find(LogFName).GetComponent<Library>().OpenItem(it);
     }
 }

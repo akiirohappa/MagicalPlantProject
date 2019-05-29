@@ -323,6 +323,9 @@
     <Reference Include="UnityEditor.iOS.Extensions">
       <HintPath>D:/Unity2018_340/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>D:/Unity2018_340/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.LinuxStandalone.Extensions">
       <HintPath>D:/Unity2018_340/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
     </Reference>

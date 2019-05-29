@@ -99,6 +99,7 @@
     <Compile Include="Assets\Asset\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
     <Compile Include="Assets\Asset\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Datas\ConfigData.cs" />
     <Compile Include="Assets\Scripts\Datas\ItemData.cs" />
     <Compile Include="Assets\Scripts\Datas\ItemList.cs" />
     <Compile Include="Assets\Scripts\Datas\Plant.cs" />
@@ -106,9 +107,11 @@
     <Compile Include="Assets\Scripts\ItemManager.cs" />
     <Compile Include="Assets\Scripts\Menu\Library.cs" />
     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Menu\Option.cs" />
     <Compile Include="Assets\Scripts\Menu\ShopandItem.cs" />
     <Compile Include="Assets\Scripts\Menu\ShopItems.cs" />
     <Compile Include="Assets\Scripts\Planter.cs" />
+    <Compile Include="Assets\Scripts\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\TimeCounter.cs" />
     <None Include="Assets\Asset\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
