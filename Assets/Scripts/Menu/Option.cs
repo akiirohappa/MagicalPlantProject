@@ -2,14 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 public class Option : MonoBehaviour
 {
-    ConfigData Cd;
+    [SerializeField]ConfigData Cd;
+    SaveLoad Sv;
     [SerializeField]AudioMixer audioMixer;
+    [SerializeField] Slider Bgmsl;
+    [SerializeField] Slider Sesl;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Cd = GetComponent<ConfigData>();
+        Sv = GetComponent<SaveLoad>();
+        Cd = Sv.CLoad();
+        if (Cd == null) Cd = new ConfigData();
+    }
+    public void OpenMenu()
+    {
+        SetConfigData();
+    }
+    void CloseMenu()
+    {
+
     }
     public void ChangeVolBGM(float vol)
     {
@@ -25,13 +39,17 @@ public class Option : MonoBehaviour
     {
         audioMixer.SetFloat("BGMVol", Cd.BGMvol);
         audioMixer.SetFloat("SEVol", Cd.SEvol);
+        Sv.Save(-1);
     }
     public ConfigData GetConfigData()
     {
         return Cd;
     }
-    public void SetConfigData(ConfigData c)
+    public void SetConfigData()
     {
-        Cd = c;
+        Cd = Sv.CLoad();
+        SetVolume();
+        Bgmsl.value = Cd.BGMvol;
+        Sesl.value = Cd.SEvol;
     }
 }

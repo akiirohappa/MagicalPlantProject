@@ -20,12 +20,15 @@ public class TimeCounter : MonoBehaviour
     [SerializeField] Text DayText;
     [SerializeField] Text Timetext;
     [SerializeField] TimeMode time = TimeMode.Noon;
+    SaveLoad Sl;
     public int changetime = 1;
     public int accsel = 1;
+    [SerializeField] bool Flag = true;
     // Start is called before the first frame update
     void Start()
     {
         Pl = GetComponent<Planter>();
+        Sl = GetComponent<SaveLoad>();
         day = 1;
         DayText.text = day + "日目";
         hour = 7;
@@ -35,6 +38,7 @@ public class TimeCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Flag) return;
         second += Time.deltaTime*accsel;
         TimeShow();
         if (second >= 60f)
@@ -58,6 +62,8 @@ public class TimeCounter : MonoBehaviour
             time = TimeMode.Noon;
             day++;
             DayText.text = day + "日目";
+            //オートセーブ
+            Sl.Save(0);
         }
     }
     public IEnumerator LightChange(TimeMode t)

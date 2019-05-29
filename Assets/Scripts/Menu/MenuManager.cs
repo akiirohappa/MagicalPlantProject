@@ -82,6 +82,7 @@ public class MenuManager : MonoBehaviour
         Config.GetComponent<Animator>().SetTrigger("Open");
         BackButton.SetActive(true);
         BackButtonTx.SetActive(true);
+        GetComponent<Option>().OpenMenu();
     }
     public void CloseMenu()
     {

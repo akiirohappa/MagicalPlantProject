@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class ConfigData : MonoBehaviour
 {
-    public float BGMvol;
-    public float SEvol;
+    public float BGMvol = 0;
+    public float SEvol = 0;
 }
