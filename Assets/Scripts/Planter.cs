@@ -130,7 +130,7 @@ public class Planter : MonoBehaviour
     }
     public string GetPlantN()
     {
-        string str = ";";
+        string str = "";
         for (int i = 0; i < plantData.Length; i++)
         {
             str += plantData[i].plantname + ",";
@@ -140,7 +140,7 @@ public class Planter : MonoBehaviour
     }
     public string GetPlantG()
     {
-        string str = ";";
+        string str = "";
         for (int i = 0; i < plantData.Length; i++)
         {
             str += plantData[i].growth + ",";
