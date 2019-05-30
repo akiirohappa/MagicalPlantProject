@@ -5,11 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class SceneChange : MonoBehaviour
 {
     static public SceneChange inst;
     [SerializeField] SaveLoad.SaveData sd;
-
     void Awake()
     {
         if (inst == null)

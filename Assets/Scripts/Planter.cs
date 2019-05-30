@@ -22,9 +22,11 @@ public class Planter : MonoBehaviour
     MenuManager Mm;
     [SerializeField] ItemData PlantItem;
     [SerializeField] List<Plant> Plants;
+    AudioManager am;
     // Start is called before the first frame update
     void Start()
     {
+        am = GameObject.Find("SceneChenger").GetComponent<AudioManager>();
         pl = ScriptableObject.CreateInstance<Plant>();
         plantData = new Plant[max];
         uiname = uiObj.transform.GetChild(0).GetComponent<Text>();
@@ -55,10 +57,12 @@ public class Planter : MonoBehaviour
             UIDraw();
             if (NowPlant.statas == PlantStatas.Harvest && Input.GetMouseButtonDown(0))
             {
+                am.PlaySE(am.SE[2]);
                 Harvest(NowPlant);
             }
             if(NowPlant.statas == PlantStatas.None && Input.GetMouseButtonDown(0) && Mm.GetMode() == MenuMode.ItemPlant)
             {
+                am.PlaySE(am.SE[2]);
                 NowPlant.SetPlant(PlantItem.plantData, beforobj);
                 PlantItem.value--;
                 Mm.CloseMenu();
@@ -158,14 +162,19 @@ public class Planter : MonoBehaviour
         }
         string[] na = name.Split(","[0]);
         string[] gr =  growth.Split(","[0]);
-        Debug.Log(Plants.Find(a => a.plantname == na[0]));
         Debug.Log(Plants.Count);
         for (int i = 0;i < plantData.Length-1; i++)
         {
             if(na[i] != "空")
             {
-                plantData[i].SetPlant(Plants.Find(a => a.plantname == na[i]),plantPlane[i]);
-                plantData[i].growth = System.Convert.ToUInt32(gr[i]);
+                for(int j = 0;j < pt.Length; j++)
+                {
+                    if(pt[j].plantname == na[i])
+                    {
+                        plantData[i].SetPlant(pt[j], plantPlane[i]);
+                        plantData[i].growth = System.Convert.ToUInt32(gr[i]);
+                    }
+                }
             }
         }
         LoadGrowth();

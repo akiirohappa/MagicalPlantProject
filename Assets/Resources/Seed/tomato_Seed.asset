@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad30beea51a97604fb487afcdfb51695, type: 3}
+  m_Name: tomato_Seed
+  m_EditorClassIdentifier: 
+  itemname: "\u30C8\u30DE\u30C8\u306E\u7A2E"
+  price: 10
+  setumei: "\u30C8\u30DE\u30C8\u306E\u7A2E\u3002"
+  value: 0
+  tag: 0
+  plantData: {fileID: 11400000, guid: 4106691730f81bd4eb0828d8261fe8ab, type: 2}
+  img: {fileID: 21300000, guid: 92312832d8cec13439868638ca17916f, type: 3}
+  IsGetItem: 0

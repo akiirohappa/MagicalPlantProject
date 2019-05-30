@@ -41,9 +41,11 @@ public class SaveLoad : MonoBehaviour
     [SerializeField] NowPosition pos;
     [SerializeField] SLType type;
     SaveData save;
+    AudioManager am;
     // Start is called before the first frame update
     void Start()
     {
+        am = GameObject.Find("SceneChenger").GetComponent<AudioManager>();
     }
     public void CloseMenu()
     {
@@ -52,6 +54,7 @@ public class SaveLoad : MonoBehaviour
     }
     public void StartSave()
     {
+        am.PlaySE(am.SE[0]);
         type = SLType.Save;
         SavePanel.SetActive(true);
                         DonePanel.SetActive(false);
@@ -62,6 +65,7 @@ public class SaveLoad : MonoBehaviour
     }
     public void StartLoad()
     {
+        am.PlaySE(am.SE[0]);
         type = SLType.Load;
         SavePanel.SetActive(true);
         SaveFNum = 0;
@@ -96,6 +100,7 @@ public class SaveLoad : MonoBehaviour
     //読み込むファイル選択
     public void SelectFile(int num)
     {
+        am.PlaySE(am.SE[0]);
         SaveFNum += num;
         if(type == SLType.Save)
         {
@@ -120,7 +125,8 @@ public class SaveLoad : MonoBehaviour
     }
     //決定ボタンに値するボタン選択時
     public void Submit()
-    { 
+    {
+        am.PlaySE(am.SE[0]);
         switch (pos)
         {
             case NowPosition.Arart:
@@ -141,6 +147,7 @@ public class SaveLoad : MonoBehaviour
     //各種キャンセルボタンを押したとき
     public void Cancel()
     {
+        am.PlaySE(am.SE[1]);
         switch (pos)
         {
             case NowPosition.Arart:
@@ -172,6 +179,7 @@ public class SaveLoad : MonoBehaviour
             sd.plantN = GetComponent<Planter>().GetPlantN();
             sd.plantG = GetComponent<Planter>().GetPlantG();
             json = JsonUtility.ToJson(sd);
+            am.PlaySE(am.SE[3]);
         }
         else json = JsonUtility.ToJson(GetComponent<Option>().GetConfigData());
         File.WriteAllText(GetFileName(SaveNum),json);
@@ -217,6 +225,7 @@ public class SaveLoad : MonoBehaviour
         {
             return;
         }
+        am.PlaySE(am.SE[3]);
         SceneChange sc = GameObject.Find("SceneChenger").GetComponent<SceneChange>();
         Debug.Log(Load(SaveFNum).itemvalues);
         sc.SetSaveData(Load(SaveFNum));
@@ -248,7 +257,7 @@ public class SaveLoad : MonoBehaviour
     
     public class SaveData
     {
-        [SerializeField] public int money;
+        [SerializeField] public int money = 100;
         [SerializeField] public int days = 0;
         [SerializeField] public int hour = 7;
         [SerializeField] public float second = 0;

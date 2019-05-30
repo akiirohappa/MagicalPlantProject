@@ -24,9 +24,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject Library;
     [SerializeField] GameObject Config;
     MenuMode MM;
+    AudioManager am;
     // Start is called before the first frame update
     void Start()
     {
+        am = GameObject.Find("SceneChenger").GetComponent<AudioManager>();
+        am.PlayBgm(am.BGM[1]);
         pl = GetComponent<PlayerData>();
         MM = MenuMode.None;
     }
@@ -38,6 +41,7 @@ public class MenuManager : MonoBehaviour
     }
     public void OpenItem()
     {
+        am.PlaySE(am.SE[0]);
         if (MM == MenuMode.Item) return;
         CloseMenu();
         MM = MenuMode.Item;
@@ -50,6 +54,7 @@ public class MenuManager : MonoBehaviour
     }
     public void OpenShop()
     {
+        am.PlaySE(am.SE[0]);
         if (MM == MenuMode.Shop) return;
         CloseMenu();
         MM = MenuMode.Shop;
@@ -62,6 +67,7 @@ public class MenuManager : MonoBehaviour
     }
     public void OpenLibrary()
     {
+        am.PlaySE(am.SE[0]);
         if (MM == MenuMode.Log) return;
         CloseMenu();
         MM = MenuMode.Log;
@@ -74,6 +80,7 @@ public class MenuManager : MonoBehaviour
     }
     public void OpenConfig()
     {
+        am.PlaySE(am.SE[0]);
         if (MM == MenuMode.Config) return;
         CloseMenu();
         MM = MenuMode.Config;
@@ -86,6 +93,7 @@ public class MenuManager : MonoBehaviour
     }
     public void CloseMenu()
     {
+        am.PlaySE(am.SE[1]);
         switch (MM)
         {
             case MenuMode.Shop:
@@ -114,6 +122,7 @@ public class MenuManager : MonoBehaviour
     }
     public void PlantStart()
     {
+        am.PlaySE(am.SE[0]);
         Item.SetActive(false);
         Item.GetComponent<Animator>().SetTrigger("Close");
         MM = MenuMode.ItemPlant;

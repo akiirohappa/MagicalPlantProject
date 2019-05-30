@@ -38,7 +38,7 @@ public class Option : MonoBehaviour
         Cd.SEvol = vol;
         SetVolume();
     }
-    void SetVolume()
+    public void SetVolume()
     {
         audioMixer.SetFloat("BGMVol", Cd.BGMvol);
         audioMixer.SetFloat("SEVol", Cd.SEvol);
