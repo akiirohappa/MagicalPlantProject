@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.IO;
+using System;
 public class ItemManager : MonoBehaviour
 {
     [SerializeField] ItemList item;
@@ -28,10 +29,33 @@ public class ItemManager : MonoBehaviour
             item.GetItemList().Add(ia[i]);
         }
     }
-    //リスト取得
+    //リスト取得（セーブ）
+    public string GetSaveItem()
+    {
+        string str = "";
+        for (int i = 0; i < item.GetItemList().Count; i++)
+        {
+            str += item.GetItemList()[i].value + ",";
+        }
+        str.TrimEnd(',');
+        return str;
+    }
+    //リスト取得（通常）
     public ItemList GetItemList()
     {
         return item;
+    }
+    //リスト渡し
+    public void SetItemList(string json)
+    {
+        StartItemGet();
+        string[] il = json.Split(","[0]);
+        Debug.Log(il[0]);
+        for (int i = 0; i < il.Length-1; i++)
+        {
+            Debug.Log(il[i]);
+            item.GetItemList()[i].value = Convert.ToInt32(il[i]);
+        }
     }
     //アイテム取得(インデックス)
     public int GetItem(ItemData it)
@@ -67,5 +91,15 @@ public class ItemManager : MonoBehaviour
     {
         item.GetItemList().RemoveAt(it);
     }
-
+    
+    public class SaveItem
+    {
+        public string itemname = "";
+        public int value = 0;
+        public SaveItem(string n,int v)
+        {
+            itemname = n;
+            value = v;
+        }
+    }
 }

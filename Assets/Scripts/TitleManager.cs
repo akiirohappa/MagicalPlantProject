@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class TitleManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject Option;
 
-    // Update is called once per frame
-    void Update()
+    public void NewGame()
     {
-        
+        SceneChange sc = GameObject.Find("SceneChenger").GetComponent<SceneChange>();
+        sc.SetSaveData(new SaveLoad.SaveData());
+        sc.SendScene("MainGame");
+    }
+    public void OpenConfig()
+    {
+        Option.SetActive(true);
+        GetComponent<Option>().OpenMenu();
+    }
+    public void CloseConfig()
+    {
+        Option.SetActive(false);
     }
 }

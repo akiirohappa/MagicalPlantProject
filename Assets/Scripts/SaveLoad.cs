@@ -45,7 +45,11 @@ public class SaveLoad : MonoBehaviour
     void Start()
     {
     }
-
+    public void CloseMenu()
+    {
+        pos = NowPosition.None;
+        Cancel();
+    }
     public void StartSave()
     {
         type = SLType.Save;
@@ -143,14 +147,11 @@ public class SaveLoad : MonoBehaviour
                 ArartPanel.SetActive(false);
                 pos = NowPosition.SelectFile;
                 break;
-            case NowPosition.Done:
-            case NowPosition.SelectFile:
+            default:
                 DonePanel.SetActive(false);
                 ArartPanel.SetActive(false);
                 SavePanel.SetActive(false);
                 pos = NowPosition.None;
-                break;
-            default:
                 break;
         }
     }
@@ -160,18 +161,23 @@ public class SaveLoad : MonoBehaviour
         PlData = GetComponent<PlayerData>();
         TimeCounter tc = GetComponent<TimeCounter>();
         SaveData sd = new SaveData();
-        sd.money = PlData.money;
-        sd.days = tc.GetTime().day;
-        sd.hour = tc.GetTime().hour;
-        sd.second = tc.GetTime().second;
-        sd.il = GetComponent<ItemManager>().GetItemList();
-        sd.plants = GetComponent<Planter>().GetPlanters();
         string json = "";
-        if (SaveNum != -1) json= JsonUtility.ToJson(sd);
+        if (SaveNum != -1)
+        {
+            sd.money = PlData.money;
+            sd.days = tc.GetTime().day;
+            sd.hour = tc.GetTime().hour;
+            sd.second = tc.GetTime().second;
+            sd.itemvalues = GetComponent<ItemManager>().GetSaveItem();
+            sd.plantN = GetComponent<Planter>().GetPlantN();
+            sd.plantG = GetComponent<Planter>().GetPlantG();
+            json = JsonUtility.ToJson(sd);
+        }
         else json = JsonUtility.ToJson(GetComponent<Option>().GetConfigData());
         File.WriteAllText(GetFileName(SaveNum),json);
-        DonePanel.SetActive(true);
+        if(type == SLType.Save)DonePanel.SetActive(true);
         pos = NowPosition.Done;
+        
     }
     //ロード
     public SaveData Load(int SaveNum)
@@ -190,12 +196,12 @@ public class SaveLoad : MonoBehaviour
         }
     }
     //コンフィグのロード
-    public ConfigData CLoad()
+    public Option.ConfigData CLoad()
     {
         try
         {
             string json = File.ReadAllText(GetFileName(-1));
-            ConfigData cd = JsonUtility.FromJson<ConfigData>(json);
+            Option.ConfigData cd = JsonUtility.FromJson<Option.ConfigData>(json);
             return cd;
         }
         catch (System.Exception e)
@@ -203,6 +209,18 @@ public class SaveLoad : MonoBehaviour
             Debug.Log(e);
             return null;
         }
+    }
+    //ロードボタンを押したとき
+    public void SelectLoad()
+    {
+        if (IsnullF)
+        {
+            return;
+        }
+        SceneChange sc = GameObject.Find("SceneChenger").GetComponent<SceneChange>();
+        Debug.Log(Load(SaveFNum).itemvalues);
+        sc.SetSaveData(Load(SaveFNum));
+        sc.SendScene("MainGame");
     }
     string GetFileName(int SaveNum)
     {
@@ -227,14 +245,44 @@ public class SaveLoad : MonoBehaviour
                 return null;
         }
     }
+    
     public class SaveData
     {
         [SerializeField] public int money;
         [SerializeField] public int days = 0;
         [SerializeField] public int hour = 7;
         [SerializeField] public float second = 0;
-        [SerializeField] public ItemList il;
-        [SerializeField] public Plant[] plants;
+        [SerializeField] public string itemvalues;
+        [SerializeField] public string plantN;
+        [SerializeField] public string plantG;
+        public SaveData()
+        {
+            string str = "";
+            List<int> it = new List<int>();
+            ItemData[] ia = Resources.LoadAll<ItemData>("Seed");
+            for (int i = 0; i < ia.Length; i++)
+            {
+                str += "0,";
+            }
+            ia = Resources.LoadAll<ItemData>("Plant");
+            for (int i = 0; i < ia.Length; i++)
+            {
+                str += "0,";
+            }
+            str.TrimEnd(',');
+            itemvalues = str;
+            Debug.Log(itemvalues);
+            string sg = "";
+            for (int i = 0;i < 16; i++)
+            {
+                str += "空,";
+                sg += "0,";
+            }
+            str.TrimEnd(',');
+            sg.TrimEnd(',');
+            plantN = str;
+            plantG = sg;
+        }
     }
     public SaveData GetSaveData()
     {

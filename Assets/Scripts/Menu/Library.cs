@@ -14,7 +14,6 @@ public class Library : MonoBehaviour
     private void Awake()
     {
         Im = GameObject.Find("Manager").GetComponent<ItemManager>();
-        
     }
     //メニューを開いた時の処理
     public void OpenMenu()
@@ -43,10 +42,5 @@ public class Library : MonoBehaviour
         Setumei.transform.GetChild(1).GetComponent<Text>().text = it.itemname;
         Setumei.transform.GetChild(2).GetComponent<Text>().text = "";
         Setumei.transform.GetChild(3).GetComponent<Text>().text = it.setumei;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

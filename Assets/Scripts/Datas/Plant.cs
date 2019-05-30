@@ -32,7 +32,8 @@ public class Plant : ScriptableObject
     }
     public void SetPlant(Plant pl, GameObject pos)
     {
-        plantname = pl.plantname ;
+        if(pl == null)Debug.Log("null");
+        plantname = pl.plantname;
         plantobj = Instantiate(pl.plantobj, pos.transform);
         GrowthPlus = pl.GrowthPlus;
         growth = 0;

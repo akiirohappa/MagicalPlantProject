@@ -14,16 +14,19 @@ public class Option : MonoBehaviour
     void Awake()
     {
         Sv = GetComponent<SaveLoad>();
-        Cd = Sv.CLoad();
-        if (Cd == null) Cd = new ConfigData();
+        SetConfigData();
     }
     public void OpenMenu()
     {
         SetConfigData();
     }
-    void CloseMenu()
+    public void CloseMenu()
     {
-
+        Sv.CloseMenu();
+    }
+    public void ToTitle()
+    {
+        GameObject.Find("SceneChenger").GetComponent<SceneChange>().SendScene("Title");
     }
     public void ChangeVolBGM(float vol)
     {
@@ -48,8 +51,14 @@ public class Option : MonoBehaviour
     public void SetConfigData()
     {
         Cd = Sv.CLoad();
+        if (Cd == null) Cd = new ConfigData();
         SetVolume();
         Bgmsl.value = Cd.BGMvol;
         Sesl.value = Cd.SEvol;
+    }
+    public class ConfigData
+    {
+        public float BGMvol = 0;
+        public float SEvol = 0;
     }
 }

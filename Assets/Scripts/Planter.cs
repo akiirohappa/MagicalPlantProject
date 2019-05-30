@@ -21,6 +21,7 @@ public class Planter : MonoBehaviour
     ItemManager im;
     MenuManager Mm;
     [SerializeField] ItemData PlantItem;
+    [SerializeField] List<Plant> Plants;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class Planter : MonoBehaviour
         uiCanHv = uiObj.transform.GetChild(2).GetComponent<Text>();
         im = GetComponent<ItemManager>();
         Mm = GetComponent<MenuManager>();
-        for (int i = 0;i < max; i++)
+        for (int i = 0; i < max; i++)
         {
             plantData[i] = ScriptableObject.CreateInstance<Plant>();
         }
@@ -107,6 +108,17 @@ public class Planter : MonoBehaviour
             if (plantData[i].growth >= 100) plantData[i].statas = PlantStatas.Harvest;
         }
     }
+    public void LoadGrowth()
+    {
+        for (int i = 0; i < max; i++)
+        {
+            if (plantData[i].statas == PlantStatas.NotGrowth)
+            {
+                plantData[i].plantobj.transform.localScale = new Vector3(plantData[i].growth / 100, plantData[i].growth / 100, plantData[i].growth / 100);
+            }
+            if (plantData[i].growth >= 100) plantData[i].statas = PlantStatas.Harvest;
+        }
+    }
     public void Harvest(Plant pl)
     {
         im.ChangeItemValue(pl.harvestItem, pl.harvestPlValue);
@@ -116,8 +128,57 @@ public class Planter : MonoBehaviour
     {
         PlantItem = pl;
     }
-    public Plant[] GetPlanters()
+    public string GetPlantN()
     {
-        return plantData;
+        string str = ";";
+        for (int i = 0; i < plantData.Length; i++)
+        {
+            str += plantData[i].plantname + ",";
+        }
+        str.TrimEnd(',');
+        return str;
+    }
+    public string GetPlantG()
+    {
+        string str = ";";
+        for (int i = 0; i < plantData.Length; i++)
+        {
+            str += plantData[i].growth + ",";
+        }
+        str.TrimEnd(',');
+        return str;
+    }
+    public void SetPlanters(string name,string growth)
+    {
+
+        Plant[] pt = Resources.LoadAll<Plant>("PlantData");
+        for (int i = 0; i < pt.Length; i++)
+        {
+            Plants.Add(pt[i]);
+        }
+        string[] na = name.Split(","[0]);
+        string[] gr =  growth.Split(","[0]);
+        Debug.Log(Plants.Find(a => a.plantname == na[0]));
+        Debug.Log(Plants.Count);
+        for (int i = 0;i < plantData.Length-1; i++)
+        {
+            if(na[i] != "空")
+            {
+                plantData[i].SetPlant(Plants.Find(a => a.plantname == na[i]),plantPlane[i]);
+                plantData[i].growth = System.Convert.ToUInt32(gr[i]);
+            }
+        }
+        LoadGrowth();
+    }
+    
+    public class SavePlant
+    {
+        public string plantname = "空";
+        public float growth = 0f;
+        public SavePlant(string n,float g)
+        {
+            plantname = n;
+            growth = g;
+        }
     }
 }

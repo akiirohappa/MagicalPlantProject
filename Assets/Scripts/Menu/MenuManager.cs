@@ -105,6 +105,7 @@ public class MenuManager : MonoBehaviour
                 break;
             case MenuMode.Config:
                 MM = MenuMode.None;
+                GetComponent<Option>().CloseMenu();
                 Config.GetComponent<Animator>().SetTrigger("Close");
                 break;
         }
