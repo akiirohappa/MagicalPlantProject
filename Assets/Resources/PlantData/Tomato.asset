@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6f6721c295584408438c4c023dacb5, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  plantname: "\u30AB\u30D6"
+  plantname: "\u30C8\u30DE\u30C8"
   growth: 0
   GrowthPlus: 4
   plantobj: {fileID: 6820888942858506195, guid: d91a0199456b1ca4aba3062d2846976c,

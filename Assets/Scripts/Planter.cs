@@ -17,7 +17,7 @@ public class Planter : MonoBehaviour
     [SerializeField] GameObject beforobj;
     Text uiname;
     Text uiGrowth;
-    Text uiCanHv;
+    GameObject uiCanHv;
     ItemManager im;
     MenuManager Mm;
     [SerializeField] ItemData PlantItem;
@@ -31,7 +31,7 @@ public class Planter : MonoBehaviour
         plantData = new Plant[max];
         uiname = uiObj.transform.GetChild(0).GetComponent<Text>();
         uiGrowth = uiObj.transform.GetChild(1).GetComponent<Text>();
-        uiCanHv = uiObj.transform.GetChild(2).GetComponent<Text>();
+        uiCanHv = uiObj.transform.GetChild(2).gameObject;
         im = GetComponent<ItemManager>();
         Mm = GetComponent<MenuManager>();
         for (int i = 0; i < max; i++)

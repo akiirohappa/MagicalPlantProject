@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tomato_Seed
   m_EditorClassIdentifier: 
   itemname: "\u30C8\u30DE\u30C8\u306E\u7A2E"
-  price: 10
+  price: 150
   setumei: "\u30C8\u30DE\u30C8\u306E\u7A2E\u3002"
   value: 0
   tag: 0

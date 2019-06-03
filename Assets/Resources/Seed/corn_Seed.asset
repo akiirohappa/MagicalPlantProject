@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: corn_Seed
   m_EditorClassIdentifier: 
   itemname: "\u30C8\u30A6\u30E2\u30ED\u30B3\u30B7\u306E\u7A2E"
-  price: 10
+  price: 30
   setumei: "\u30C8\u30A6\u30E2\u30ED\u30B3\u30B7\u306E\u7A2E\u3002"
   value: 0
   tag: 0

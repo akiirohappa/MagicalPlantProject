@@ -34,4 +34,8 @@ public class TitleManager : MonoBehaviour
         am.PlaySE(am.SE[1]);
         Option.SetActive(false);
     }
+    public void QueitGame()
+    {
+        Application.Quit();
+    }
 }

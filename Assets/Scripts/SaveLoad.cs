@@ -258,7 +258,7 @@ public class SaveLoad : MonoBehaviour
     public class SaveData
     {
         [SerializeField] public int money = 100;
-        [SerializeField] public int days = 0;
+        [SerializeField] public int days = 1;
         [SerializeField] public int hour = 7;
         [SerializeField] public float second = 0;
         [SerializeField] public string itemvalues;

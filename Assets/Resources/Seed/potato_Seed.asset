@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: potato_Seed
   m_EditorClassIdentifier: 
   itemname: "\u3058\u3083\u304C\u3044\u3082\u306E\u7A2E"
-  price: 10
+  price: 80
   setumei: "\u3058\u3083\u304C\u3044\u3082\u306E\u7A2E\u3002"
   value: 0
   tag: 0
