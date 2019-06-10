@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------
+//音声再生
+//----------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

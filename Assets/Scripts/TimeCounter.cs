@@ -25,6 +25,7 @@ public class TimeCounter : MonoBehaviour
     public int accsel = 1;
     [SerializeField] bool Flag = true;
     // Start is called before the first frame update
+    //初期設定
     void Start()
     {
         Pl = GetComponent<Planter>();
@@ -35,7 +36,6 @@ public class TimeCounter : MonoBehaviour
         second = 00f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!Flag) return;
@@ -66,6 +66,7 @@ public class TimeCounter : MonoBehaviour
             Sl.Save(0);
         }
     }
+    //時間経過時の明かり
     public IEnumerator LightChange(TimeMode t)
     {
         for(int i = 0;i < changetime; i++)
@@ -85,6 +86,7 @@ public class TimeCounter : MonoBehaviour
             yield return null;
         }
     }
+    //時間表示
     void TimeShow()
     {
         string sc;
@@ -92,6 +94,7 @@ public class TimeCounter : MonoBehaviour
         else sc = ((int)second).ToString();
         Timetext.text = hour.ToString() + " : " + sc;
     }
+    //セーブ用データ
     public class TimeData
     {
         public int day;

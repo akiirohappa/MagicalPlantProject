@@ -26,6 +26,10 @@ public class ShopandItem : MonoBehaviour
     int plusvalue;
     [SerializeField] int money;
     AudioManager am;
+    string Psstate;
+    [SerializeField] bool IsChanged;
+    [SerializeField]int changevalue;
+    [SerializeField] GameObject Allbutton;
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,6 +39,22 @@ public class ShopandItem : MonoBehaviour
         Mm = GameObject.Find("Manager").GetComponent<MenuManager>();
         Pl = GameObject.Find("Manager").GetComponent<Planter>();
         GetShopItems();
+    }
+    void Update()
+    {
+        if (IsChanged) return;
+        switch (Psstate)
+        {
+            case "Plus":
+                Changevalue(changevalue);
+                break;
+            case "Minus":
+                Changevalue(changevalue);
+                break;
+            default:
+
+                break;
+        }
     }
     void GetShopItems()
     {
@@ -145,6 +165,7 @@ public class ShopandItem : MonoBehaviour
         am.PlaySE(am.SE[0]);
         SS = ShopStatas.Buy;
         SetShop(SItems.GetItemList());
+        if(Mm.GetMode() == MenuMode.Shop) Allbutton.SetActive(false);
     }
     //ショップのアイテムリスト切り替え(売却)(ショップ)
     public void SetSpSell()
@@ -153,6 +174,7 @@ public class ShopandItem : MonoBehaviour
         SS = ShopStatas.Sell;
         MItems = Im.GetItemList();
         SetShop(MItems.GetItemList());
+        if (Mm.GetMode() == MenuMode.Shop) Allbutton.SetActive(true);
     }
     //購入or売却(ショップ)
     public void StartTrede()
@@ -166,7 +188,7 @@ public class ShopandItem : MonoBehaviour
     void TradeReset()
     {
         am.PlaySE(am.SE[1]);
-        TradePanel.transform.GetChild(1).GetComponent<Text>().text = (selectItem.price * plusvalue).ToString();
+        TradePanel.transform.GetChild(1).GetComponent<Text>().text = (selectItem.price * plusvalue).ToString() + "円";
         if ((selectItem.price * plusvalue) > money && SS == ShopStatas.Buy)
         {
             TradePanel.transform.GetChild(2).gameObject.SetActive(true);
@@ -175,6 +197,8 @@ public class ShopandItem : MonoBehaviour
         {
             TradePanel.transform.GetChild(2).gameObject.SetActive(false);
         }
+        if (SS == ShopStatas.Buy) TradePanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "購入";
+        else TradePanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "売却";
         TradePanel.transform.GetChild(5).GetComponent<Text>().text = plusvalue.ToString();
     }
     public void SubmitTrade()
@@ -205,14 +229,50 @@ public class ShopandItem : MonoBehaviour
         am.PlaySE(am.SE[1]);
         TradePanel.SetActive(false);
     }
+    public void StartChange(int num)
+    {
+        if (IsChanged) return;
+        changevalue = num;
+        if (num < 0)
+        {
+            Psstate = "Minus";
+        }
+        else
+        {
+            Psstate = "Plus";
+        }
+    }
+    IEnumerator ChangeWait()
+    {
+        IsChanged = true;
+        yield return new WaitForSeconds(0.125f);
+        IsChanged = false;
+    }
     public void Changevalue(int num)
     {
+        StartCoroutine(ChangeWait());
         am.PlaySE(am.SE[0]);
-        if (plusvalue == 1 && num < 0) return;
-        else if (SS == ShopStatas.Buy && plusvalue == 999 && num > 0) return;
-        else if (SS == ShopStatas.Sell && plusvalue == MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value) return;
+        if (plusvalue == 1 && num < 0) return;//0→-1とさせない
+        else if (SS == ShopStatas.Buy && plusvalue == 999 && num > 0) return;//とりあえず９９９個以上は買えない
+        else if (SS == ShopStatas.Sell && plusvalue + num < MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value && num > 0) return;//所持数の最大以上売れない
         plusvalue += num;
         TradeReset();
+    }
+    public void StopChangevalue()
+    {
+        Psstate = "None";
+        StopCoroutine(ChangeWait());
+        IsChanged = false;
+    }
+    public void ChangevalueAll()
+    {
+        plusvalue = MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value;
+        Changevalue(0);
+    }
+    public void ChangevalueReset()
+    {
+        plusvalue = 1;
+        Changevalue(0);
     }
     //----------------------------------------------
     //アイテム部分

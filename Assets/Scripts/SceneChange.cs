@@ -25,11 +25,13 @@ public class SceneChange : MonoBehaviour
         }
         else Destroy(gameObject);
     }
+    //シーン移動開始
     public void SendScene(string sceneName)
     {
         StartCoroutine(LoadScene(sceneName));
         //SceneManager.LoadScene(sceneName);
     }
+    //シーン移動中のUI
     IEnumerator LoadScene(string scene)
     {
         Canvas = GameObject.Find("Canvas");
@@ -45,10 +47,12 @@ public class SceneChange : MonoBehaviour
             yield return null;
         }
     }
+    //ロードしたデータの設定
     public void SetSaveData(SaveLoad.SaveData s)
     {
         sd = s;
     }
+    //ロードした設定の取得
     public SaveLoad.SaveData GetSaveData()
     {
         return sd;

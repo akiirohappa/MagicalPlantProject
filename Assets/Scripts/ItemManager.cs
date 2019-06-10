@@ -1,4 +1,6 @@
-﻿//アイテム管理
+﻿//----------------------------------------------------
+//アイテム管理
+//----------------------------------------------------
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
