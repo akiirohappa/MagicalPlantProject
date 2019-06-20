@@ -308,7 +308,7 @@ public class ShopandItem : MonoBehaviour
     public void ChangePlantValue(int i)
     {
         if (plantvalue == 1 && i < 0) return;
-        else if (plantvalue == MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value && i > 0) return;
+        else if ((plantvalue == MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value || plantvalue == 16)&& i > 0) return;
         plantvalue += i;
         pvalueText.text = plantvalue.ToString();
     }
