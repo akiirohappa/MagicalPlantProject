@@ -252,9 +252,22 @@ public class ShopandItem : MonoBehaviour
     {
         StartCoroutine(ChangeWait());
         am.PlaySE(am.SE[0]);
-        if (plusvalue == 1 && num < 0) return;//0→-1とさせない
+        if (plusvalue + num < 1)
+        {
+            plusvalue = 1;
+            TradeReset();
+            return;//1以下にさせない
+        }
         else if (SS == ShopStatas.Buy && plusvalue == 999 && num > 0) return;//とりあえず９９９個以上は買えない
-        else if (SS == ShopStatas.Sell && plusvalue + num < MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value && num > 0) return;//所持数の最大以上売れない
+        else if (SS == ShopStatas.Sell)
+        {
+            if ((plusvalue + num) > MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value && num > 0)
+            {
+                plusvalue = MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value;
+                TradeReset();
+                return;//所持数の最大以上売れない
+            }
+        }
         plusvalue += num;
         TradeReset();
     }
