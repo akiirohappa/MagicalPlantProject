@@ -30,8 +30,6 @@ public class ShopandItem : MonoBehaviour
     [SerializeField] bool IsChanged;
     [SerializeField]int changevalue;
     [SerializeField] GameObject Allbutton;
-    [SerializeField] int plantvalue;
-    [SerializeField] Text pvalueText;
     // Start is called before the first frame update
     void Awake()
     {
@@ -58,7 +56,6 @@ public class ShopandItem : MonoBehaviour
                 break;
         }
     }
-    #region
     void GetShopItems()
     {
         SItems = Resources.Load<ItemList>(SItemList);
@@ -106,8 +103,6 @@ public class ShopandItem : MonoBehaviour
             else
             {
                 Setumei.transform.GetChild(4).gameObject.SetActive(true);
-                plantvalue = 1;
-                pvalueText.text = plantvalue.ToString();
                 Setumei.transform.GetChild(4).transform.GetChild(0).GetComponent<Text>().text = "植える";
             }
         }
@@ -161,11 +156,9 @@ public class ShopandItem : MonoBehaviour
             }
         }
     }
-    #endregion
     //----------------------------------------------
     //ショップ部分
     //----------------------------------------------
-    #region
     //ショップのアイテムリスト切り替え(購入)(ショップ)
     public void SetSpBuy()
     {
@@ -294,7 +287,6 @@ public class ShopandItem : MonoBehaviour
         plusvalue = 1;
         Changevalue(0);
     }
-    #endregion
     //----------------------------------------------
     //アイテム部分
     //----------------------------------------------
@@ -302,14 +294,7 @@ public class ShopandItem : MonoBehaviour
     public void StartPlant()
     {
         am.PlaySE(am.SE[0]);
-        Pl.SetPlantItem(selectItem,plantvalue);
+        Pl.SetPlantItem(selectItem);
     }
-    //植える数変更
-    public void ChangePlantValue(int i)
-    {
-        if (plantvalue == 1 && i < 0) return;
-        else if (plantvalue == MItems.GetItemList()[MItems.GetItemList().IndexOf(selectItem)].value && i > 0) return;
-        plantvalue += i;
-        pvalueText.text = plantvalue.ToString();
-    }
+
 }

@@ -26,7 +26,6 @@ public class Planter : MonoBehaviour
     [SerializeField] ItemData PlantItem;
     [SerializeField] List<Plant> Plants;
     AudioManager am;
-    int plantvalue;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,8 +68,7 @@ public class Planter : MonoBehaviour
                 am.PlaySE(am.SE[2]);
                 NowPlant.SetPlant(PlantItem.plantData, beforobj);
                 PlantItem.value--;
-                plantvalue--;
-                if(plantvalue == 0)Mm.CloseMenu();
+                Mm.CloseMenu();
             }
         }
         else
@@ -133,10 +131,9 @@ public class Planter : MonoBehaviour
         im.ChangeItemValue(pl.harvestItem, pl.harvestPlValue);
         pl.ResetPlant();
     }
-    public void SetPlantItem(ItemData pl ,int num)
+    public void SetPlantItem(ItemData pl)
     {
         PlantItem = pl;
-        plantvalue = num;
     }
     public string GetPlantN()
     {
