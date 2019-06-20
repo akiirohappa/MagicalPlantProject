@@ -1,0 +1,1 @@
+{"money":100,"days":1,"hour":5,"second":20.965328216552736,"itemvalues":"0,0,0,0,0,0,0,0,0,0,0,0,","ItemIsGet":[false,true,false,true,false,false,false,true,false,false,false,false],"plantN":"さつまいも,さつまいも,さつまいも,空,空,空,空,空,空,空,空,空,空,空,空,空,","plantG":"25,25,25,0,0,0,0,0,0,0,0,0,0,0,0,0,"}

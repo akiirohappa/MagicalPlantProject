@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: siitake
   m_EditorClassIdentifier: 
   itemname: "\u3057\u3044\u305F\u3051"
-  price: 10000
+  price: 50000
   setumei: "\u80B2\u3063\u3066\u3044\u308B\u3068\u304D\u8449\u3063\u3071\u3060\u3063\u305F\u3088\u306D\uFF1F\u3068\u601D\u3063\u305F\u3042\u306A\u305F\u3002\u305D\u308C\u306F\u6B63\u3057\u3044\u3002"
   value: 0
   tag: 1
