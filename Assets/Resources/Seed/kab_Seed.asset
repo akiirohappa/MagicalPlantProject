@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: "\u30AB\u30D6\u306E\u7A2E"
   price: 10
-  setumei: "\u30AB\u30D6\u306E\u7A2E\u3002"
+  setumei: "\u30AB\u30D6\u306E\u7A2E\u3002\u521D\u5FC3\u8005\u306B\u304A\u3059\u3059\u3081\u3002"
   value: 0
   tag: 0
   plantData: {fileID: 11400000, guid: 1968d3ed772b6584f8bc1bfbaa4a9eff, type: 2}

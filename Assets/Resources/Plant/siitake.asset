@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad30beea51a97604fb487afcdfb51695, type: 3}
+  m_Name: siitake
+  m_EditorClassIdentifier: 
+  itemname: "\u3057\u3044\u305F\u3051"
+  price: 10000
+  setumei: "\u80B2\u3063\u3066\u3044\u308B\u3068\u304D\u8449\u3063\u3071\u3060\u3063\u305F\u3088\u306D\uFF1F\u3068\u601D\u3063\u305F\u3042\u306A\u305F\u3002\u305D\u308C\u306F\u6B63\u3057\u3044\u3002"
+  value: 0
+  tag: 1
+  plantData: {fileID: 0}
+  img: {fileID: 21300000, guid: a257d1c97ed9e4f48a1f01e2392ff2d7, type: 3}
+  IsGetItem: 0
