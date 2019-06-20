@@ -42,13 +42,24 @@ public class ItemManager : MonoBehaviour
         str.TrimEnd(',');
         return str;
     }
+    //アイテム取得済みか取得
+    public bool[] GetSaveItemIsget()
+    {
+        int count = item.GetItemList().Count;
+        bool[] isget = new bool[count];
+        for(int i = 0;i < count; i++)
+        {
+            isget[i] = item.GetItemList()[i].IsGetItem;
+        }
+        return isget;
+    }
     //リスト取得（通常）
     public ItemList GetItemList()
     {
         return item;
     }
     //リスト渡し
-    public void SetItemList(string json)
+    public void SetItemList(string json,bool[]isget)
     {
         StartItemGet();
         string[] il = json.Split(","[0]);
@@ -57,6 +68,7 @@ public class ItemManager : MonoBehaviour
         {
             Debug.Log(il[i]);
             item.GetItemList()[i].value = Convert.ToInt32(il[i]);
+            item.GetItemList()[i].IsGetItem = isget[i];
         }
     }
     //アイテム取得(インデックス)

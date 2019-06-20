@@ -176,6 +176,7 @@ public class SaveLoad : MonoBehaviour
             sd.hour = tc.GetTime().hour;
             sd.second = tc.GetTime().second;
             sd.itemvalues = GetComponent<ItemManager>().GetSaveItem();
+            sd.ItemIsGet = GetComponent<ItemManager>().GetSaveItemIsget();
             sd.plantN = GetComponent<Planter>().GetPlantN();
             sd.plantG = GetComponent<Planter>().GetPlantG();
             json = JsonUtility.ToJson(sd);
@@ -262,6 +263,7 @@ public class SaveLoad : MonoBehaviour
         [SerializeField] public int hour = 7;
         [SerializeField] public float second = 0;
         [SerializeField] public string itemvalues;
+        [SerializeField] public bool[] ItemIsGet;
         [SerializeField] public string plantN;
         [SerializeField] public string plantG;
         public SaveData()

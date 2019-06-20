@@ -19,7 +19,7 @@ public class PlayerData : MonoBehaviour
         money = sd.money;
         TimeCounter tc = GetComponent<TimeCounter>();
         tc.SetTime(sd.days, sd.hour, sd.second);
-        GetComponent<ItemManager>().SetItemList(sd.itemvalues);
+        GetComponent<ItemManager>().SetItemList(sd.itemvalues,sd.ItemIsGet);
         GetComponent<Planter>().SetPlanters(sd.plantN,sd.plantG);
     }
 }

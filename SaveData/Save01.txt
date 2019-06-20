@@ -1,1 +1,1 @@
-{"money":70,"days":1,"hour":9,"second":29.428333282470704,"itemvalues":"0,11,0,0,0,0,0,0,0,0,","plantN":"空,空,空,空,空,空,空,空,空,空,空,空,空,空,空,空,","plantG":"0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"}
+{"money":90,"days":1,"hour":9,"second":12.483684539794922,"itemvalues":"0,1,0,0,0,0,0,0,0,0,","ItemIsGet":[false,true,false,false,false,false,false,false,false,false],"plantN":"空,空,空,空,空,空,空,空,空,空,空,空,空,空,空,空,","plantG":"0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"}
